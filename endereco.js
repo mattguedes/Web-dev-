@@ -1,52 +1,48 @@
-const {Model, DataType } = require('sequelize');
-const {NOT} = require('sequelize/types/dererrable');
-const sequelize = new Sequelize = new Sequelize('sqlite::memory');
+'use strict';
 
-Endereco.imit({
-    Id:{
-        type: DataType.INTEGER,
-        primarykey: true,
+/** @type {import('sequelize-cli').Migration} */
+module.exports = {
+  up: async (queryInterface, Sequelize) => {
+    await queryInterface.createTable('enderecos', {
+      Id: {
+        type: Sequelize.BIGINT,
+        primaryKey: true,
         autoIncrement: true,
-    },
-    Cep: {
-        type: DataType.STRING,
-        allowNull: false,
-    },
-    Logradouro: {
-        type: DataType.STRING,
-        allowNull: false,
+        allowNull: false
+      },
+      Cep: {
+          type: Sequelize.STRING,
+          allowNull: false
+      },
+      Numero: {
+          type: Sequelize.INTEGER,
+          allowNull: false
+      },
+      Complemento: {
+          type: Sequelize.STRING,
+          allowNull: false
+      },
+      Bairro: {
+          type: Sequelize.STRING,
+          allowNull: false
+      },
+      Cidade: {
+          type: Sequelize.STRING,
+          allowNull: false
+      },
+      Estado: {
+          type: Sequelize.STRING,
+          allowNull: false
+      },
+      MunicipioIBGE: {
+          type: Sequelize.STRING,
+          allowNull: false
+      },
+    });
+  },
 
-    },
-    Numero: {
-    type: DataType.INTEGER,
-    allowNull: false, 
 
-},
-    Complemento: {
-        type: DataType.STRING,
-
-    },
-    Bairro: {
-        type: DataType.STRING,
-        allowNull: false,
-
-    },
-    Cidade: {
-        type: DataType.STRING,
-        allowNull: false,
-    },
-    Estado: {
-        type: DataType.STRING,
-        allownull: false,
-    },
-    MunicipiosIBGE: {
-        type: DataType.STRING,
-        allowNull: false,
-    },
-},{
-    sequelize,
-    modelName: 'Endereco',
-    tableName: 'enderecos',
-    timestamps: true,
-});
-module.exports = Endereco;
+  async down (queryInterface, Sequelize) {
+    await queryInterface.dropTable('enderecos');
+  }
+};
